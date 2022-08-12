@@ -1,38 +1,34 @@
 package glacialExpedition.repositories;
 
+import glacialExpedition.models.explorers.Explorer;
 import glacialExpedition.models.states.State;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public class StateRepository implements Repository<State>{
-    private static Collection<State> states;
+    private Map<String, State> states;
 
     public StateRepository() {
-        states= new ArrayList<>();
+        this.states= new LinkedHashMap<>();
     }
 
     @Override
     public Collection<State> getCollection() {
-        return Collections.unmodifiableCollection(states);
+        return Collections.unmodifiableCollection(states.values());
     }
 
     @Override
     public void add(State entity) {
-        states.add(entity);
+        states.put(entity.getName(),entity);
     }
 
     @Override
     public boolean remove(State entity) {
-        return states.remove(entity);
+        return states.remove(entity.getName()) != null;
     }
 
     @Override
     public State byName(String name) {
-        return states.stream()
-                .filter(s->s.getName().equals(name))
-                .findFirst()
-                .orElse(null);
+        return states.get(name);
     }
 }
