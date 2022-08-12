@@ -10,8 +10,7 @@ import glacialExpedition.repositories.ExplorerRepository;
 import glacialExpedition.repositories.StateRepository;
 
 import static glacialExpedition.common.ConstantMessages.*;
-import static glacialExpedition.common.ExceptionMessages.EXPLORER_DOES_NOT_EXIST;
-import static glacialExpedition.common.ExceptionMessages.EXPLORER_INVALID_TYPE;
+import static glacialExpedition.common.ExceptionMessages.*;
 
 public class ControllerImpl implements Controller {
     private ExplorerRepository explorerRepository;
@@ -63,6 +62,10 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String exploreState(String stateName) {
+        boolean emptyCollection = explorerRepository.getCollection().isEmpty();
+        if(emptyCollection) {
+            throw new IllegalArgumentException(STATE_EXPLORERS_DOES_NOT_EXISTS);
+        }
         return null;
     }
 
