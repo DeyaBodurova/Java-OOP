@@ -69,15 +69,21 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String exploreState(String stateName) {
-        List<Explorer> validExplorers = explorerRepository
-                .getCollection()
-                .stream()
-                .filter(e->e.getEnergy()>50)
-                .collect(Collectors.toList());
-        if(validExplorers.isEmpty()) {
+        boolean explorersLeft = explorerRepository.getCollection().isEmpty();
+//        List<Explorer> validExplorers = explorerRepository
+//                .getCollection()
+//                .stream()
+//                .filter(e->e.getEnergy()>50)
+//                .collect(Collectors.toList());
+        if(explorersLeft) {
             throw new IllegalArgumentException(STATE_EXPLORERS_DOES_NOT_EXISTS);
         }
-        Mission mission = new MissionImpl();
+//        State stateToExplore = stateRepository.byName(stateName);
+//        Mission mission = new MissionImpl();
+//        mission.explore(stateToExplore,validExplorers);
+//        long countRetired = validExplorers.stream()
+//                .filter(e->e.getEnergy()==0)
+//                .count();
         exploredState++;
         return String.format(STATE_EXPLORER,stateName,retiredExplorers);
     }
