@@ -4,12 +4,13 @@ import glacialExpedition.models.explorers.AnimalExplorer;
 import glacialExpedition.models.explorers.Explorer;
 import glacialExpedition.models.explorers.GlacierExplorer;
 import glacialExpedition.models.explorers.NaturalExplorer;
-import glacialExpedition.models.mission.Mission;
-import glacialExpedition.models.mission.MissionImpl;
 import glacialExpedition.models.states.State;
 import glacialExpedition.models.states.StateImpl;
 import glacialExpedition.repositories.ExplorerRepository;
 import glacialExpedition.repositories.StateRepository;
+
+import java.util.Collection;
+import java.util.Collections;
 
 import static glacialExpedition.common.ConstantMessages.*;
 import static glacialExpedition.common.ExceptionMessages.*;
@@ -24,6 +25,7 @@ public class ControllerImpl implements Controller {
         explorerRepository = new ExplorerRepository();
         stateRepository = new StateRepository();
         retiredExplorers = 0;
+        exploredState = 0;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class ControllerImpl implements Controller {
     @Override
     public String addState(String stateName, String... exhibits) {
         State state = new StateImpl(stateName);
+        //Collections.addAll(state.getExhibits(),exhibits);
         stateRepository.add(state);
         return String.format(STATE_ADDED, stateName);
     }
@@ -75,12 +78,12 @@ public class ControllerImpl implements Controller {
         if (explorersLeft) {
             throw new IllegalArgumentException(STATE_EXPLORERS_DOES_NOT_EXISTS);
         }
-//        State stateToExplore = stateRepository.byName(stateName);
+////        State stateToExplore = stateRepository.byName(stateName);
 //        Mission mission = new MissionImpl();
-//        mission.explore(stateToExplore,validExplorers);
-//        long countRetired = validExplorers.stream()
-//                .filter(e->e.getEnergy()==0)
-//                .count();
+////        mission.explore(stateToExplore,validExplorers);
+////        long countRetired = validExplorers.stream()
+////                .filter(e->e.getEnergy()==0)
+////                .count();
         exploredState++;
         return String.format(STATE_EXPLORER, stateName, retiredExplorers);
     }
@@ -92,7 +95,7 @@ public class ControllerImpl implements Controller {
         sb.append(System.lineSeparator());
         sb.append(FINAL_EXPLORER_INFO);
         sb.append(System.lineSeparator());
-        sb.append(explorerRepository.getClass().getSimpleName().toString());
+        sb.append(explorerRepository.toString());
         return sb.toString().trim();
     }
 }

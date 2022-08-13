@@ -16,14 +16,9 @@ public class ExplorerRepository implements Repository<Explorer> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        explorers.values().forEach(e -> sb.append(String.format(FINAL_EXPLORER_NAME,e.getName()))
-                .append(System.lineSeparator())
-                .append(String.format(FINAL_EXPLORER_ENERGY,e.getEnergy()))
-                .append(System.lineSeparator())
-                .append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS, (Object) (e.getSuitcase().getExhibits()
-                        .stream().toString().split(", "))))
+        explorers.values().forEach(e -> sb.append(e)
                 .append(System.lineSeparator()));
-        return sb.toString().trim();
+        return sb.toString();
     }
 
     @Override
