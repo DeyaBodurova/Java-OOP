@@ -30,8 +30,4 @@ public class StateImpl implements State {
         }
         this.name = name;
     }
-
-    public  void setExhibits(Collection<String> exhibits) {
-        this.exhibits = exhibits;
-    }
 }
