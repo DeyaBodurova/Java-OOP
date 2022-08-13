@@ -53,16 +53,16 @@ public abstract class BaseExplorer implements Explorer {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 //        StringBuilder exhibitsPerExplorer = new StringBuilder((Arrays.toString(suitcase.getExhibits().stream().toString().split(", "))));
-         sb.append(String.format(FINAL_EXPLORER_NAME, getName()));
-         sb.append(System.lineSeparator());
-         sb.append(String.format(FINAL_EXPLORER_ENERGY, getEnergy()));
-         sb.append(System.lineSeparator());
-         if(getSuitcase().getExhibits().isEmpty()) {
-             sb.append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS, "None"));
-         } else {
-             sb.append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS,String.join(FINAL_EXPLORER_SUITCASE_EXHIBITS_DELIMITER,getSuitcase().getExhibits())));
-         }
-    return sb.toString();
+        sb.append(String.format(FINAL_EXPLORER_NAME, getName()));
+        sb.append(System.lineSeparator());
+        sb.append(String.format(FINAL_EXPLORER_ENERGY, getEnergy()));
+        sb.append(System.lineSeparator());
+        if (getSuitcase().getExhibits().isEmpty()) {
+            sb.append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS, "None"));
+        } else {
+            sb.append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS, String.join(FINAL_EXPLORER_SUITCASE_EXHIBITS_DELIMITER, getSuitcase().getExhibits())));
+        }
+        return sb.toString();
     }
 
     public void setSuitcase(Suitcase suitcase) {
