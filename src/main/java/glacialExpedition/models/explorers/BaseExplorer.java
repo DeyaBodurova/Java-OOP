@@ -52,7 +52,6 @@ public abstract class BaseExplorer implements Explorer {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-//        StringBuilder exhibitsPerExplorer = new StringBuilder((Arrays.toString(suitcase.getExhibits().stream().toString().split(", "))));
         sb.append(String.format(FINAL_EXPLORER_NAME, getName()));
         sb.append(System.lineSeparator());
         sb.append(String.format(FINAL_EXPLORER_ENERGY, getEnergy()));
