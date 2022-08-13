@@ -4,6 +4,8 @@ import glacialExpedition.models.explorers.Explorer;
 
 import java.util.*;
 
+import static glacialExpedition.common.ConstantMessages.*;
+
 public class ExplorerRepository implements Repository<Explorer> {
     private Map<String, Explorer> explorers;
 
@@ -14,8 +16,14 @@ public class ExplorerRepository implements Repository<Explorer> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        explorers.values().forEach(e -> sb.append(e).append(System.lineSeparator()));
-        return sb.toString();
+        explorers.values().forEach(e -> sb.append(String.format(FINAL_EXPLORER_NAME,e.getName()))
+                .append(System.lineSeparator())
+                .append(String.format(FINAL_EXPLORER_ENERGY,e.getEnergy()))
+                .append(System.lineSeparator())
+                .append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS,(e.getSuitcase().getExhibits()
+                        .stream().map(e->e).toString().split(FINAL_EXPLORER_SUITCASE_EXHIBITS_DELIMITER)))
+                .append(System.lineSeparator()));
+        return sb.toString().trim();
     }
 
     @Override

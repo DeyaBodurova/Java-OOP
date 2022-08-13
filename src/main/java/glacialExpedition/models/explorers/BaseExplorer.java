@@ -3,6 +3,8 @@ package glacialExpedition.models.explorers;
 import glacialExpedition.models.suitcases.Carton;
 import glacialExpedition.models.suitcases.Suitcase;
 
+import static glacialExpedition.common.ConstantMessages.FINAL_EXPLORER_ENERGY;
+import static glacialExpedition.common.ConstantMessages.FINAL_EXPLORER_NAME;
 import static glacialExpedition.common.ExceptionMessages.EXPLORER_ENERGY_LESS_THAN_ZERO;
 import static glacialExpedition.common.ExceptionMessages.EXPLORER_NAME_NULL_OR_EMPTY;
 
@@ -44,6 +46,20 @@ public abstract class BaseExplorer implements Explorer {
             throw new IllegalArgumentException(EXPLORER_ENERGY_LESS_THAN_ZERO);
         }
         this.energy = energy;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(FINAL_EXPLORER_NAME, name))
+                .append(System.lineSeparator())
+                .append(String.format(FINAL_EXPLORER_ENERGY, energy))
+                .append(System.lineSeparator());
+        return "BaseExplorer{" +
+                "name='" + name + '\'' +
+                ", energy=" + energy +
+                ", suitcase=" + suitcase +
+                '}';
     }
 
     public void setSuitcase(Suitcase suitcase) {
