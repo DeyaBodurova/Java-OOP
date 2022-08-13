@@ -4,8 +4,6 @@ import glacialExpedition.models.explorers.Explorer;
 
 import java.util.*;
 
-import static glacialExpedition.common.ConstantMessages.FINAL_EXPLORER_NAME;
-
 public class ExplorerRepository implements Repository<Explorer> {
     private Map<String, Explorer> explorers;
 
