@@ -92,7 +92,7 @@ public class ControllerImpl implements Controller {
         sb.append(System.lineSeparator());
         sb.append(FINAL_EXPLORER_INFO);
         sb.append(System.lineSeparator());
-        sb.append(explorerRepository.toString());
+        sb.append(explorerRepository.getClass().getSimpleName().toString());
         return sb.toString().trim();
     }
 }

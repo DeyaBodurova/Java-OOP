@@ -3,8 +3,9 @@ package glacialExpedition.models.explorers;
 import glacialExpedition.models.suitcases.Carton;
 import glacialExpedition.models.suitcases.Suitcase;
 
-import static glacialExpedition.common.ConstantMessages.FINAL_EXPLORER_ENERGY;
-import static glacialExpedition.common.ConstantMessages.FINAL_EXPLORER_NAME;
+import java.util.Arrays;
+
+import static glacialExpedition.common.ConstantMessages.*;
 import static glacialExpedition.common.ExceptionMessages.EXPLORER_ENERGY_LESS_THAN_ZERO;
 import static glacialExpedition.common.ExceptionMessages.EXPLORER_NAME_NULL_OR_EMPTY;
 
@@ -48,19 +49,16 @@ public abstract class BaseExplorer implements Explorer {
         this.energy = energy;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format(FINAL_EXPLORER_NAME, name))
-                .append(System.lineSeparator())
-                .append(String.format(FINAL_EXPLORER_ENERGY, energy))
-                .append(System.lineSeparator());
-        return "BaseExplorer{" +
-                "name='" + name + '\'' +
-                ", energy=" + energy +
-                ", suitcase=" + suitcase +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        StringBuilder exhibitsPerExplorer = new StringBuilder((Arrays.toString(suitcase.getExhibits().stream().toString().split(", "))));
+//        return sb.append(String.format(FINAL_EXPLORER_NAME, name))
+//                .append(System.lineSeparator())
+//                .append(String.format(FINAL_EXPLORER_ENERGY, energy))
+//                .append(System.lineSeparator())
+//                .append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS, exhibitsPerExplorer)).toString();
+//    }
 
     public void setSuitcase(Suitcase suitcase) {
         this.suitcase = suitcase;

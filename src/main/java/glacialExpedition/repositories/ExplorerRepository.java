@@ -20,8 +20,8 @@ public class ExplorerRepository implements Repository<Explorer> {
                 .append(System.lineSeparator())
                 .append(String.format(FINAL_EXPLORER_ENERGY,e.getEnergy()))
                 .append(System.lineSeparator())
-                .append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS,(e.getSuitcase().getExhibits()
-                        .stream().map(e->e).toString().split(FINAL_EXPLORER_SUITCASE_EXHIBITS_DELIMITER)))
+                .append(String.format(FINAL_EXPLORER_SUITCASE_EXHIBITS, (Object) (e.getSuitcase().getExhibits()
+                        .stream().toString().split(", "))))
                 .append(System.lineSeparator()));
         return sb.toString().trim();
     }
