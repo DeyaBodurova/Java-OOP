@@ -18,7 +18,7 @@ public class ControllerImpl implements Controller {
     private ExplorerRepository explorerRepository;
     private StateRepository stateRepository;
     private int retiredExplorers;
-    private  int exploredState;
+    private int exploredState;
 
     public ControllerImpl() {
         explorerRepository = new ExplorerRepository();
@@ -56,12 +56,12 @@ public class ControllerImpl implements Controller {
     @Override
     public String retireExplorer(String explorerName) {
         Explorer explorer = explorerRepository.byName(explorerName);
-       if(explorer==null) {
-           throw new IllegalArgumentException(String.format(EXPLORER_DOES_NOT_EXIST,explorerName));
-       }
+        if (explorer == null) {
+            throw new IllegalArgumentException(String.format(EXPLORER_DOES_NOT_EXIST, explorerName));
+        }
         explorerRepository.remove(explorer);
-       retiredExplorers++;
-        return String.format(EXPLORER_RETIRED,explorerName);
+        retiredExplorers++;
+        return String.format(EXPLORER_RETIRED, explorerName);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ControllerImpl implements Controller {
 //                .stream()
 //                .filter(e->e.getEnergy()>50)
 //                .collect(Collectors.toList());
-        if(explorersLeft) {
+        if (explorersLeft) {
             throw new IllegalArgumentException(STATE_EXPLORERS_DOES_NOT_EXISTS);
         }
 //        State stateToExplore = stateRepository.byName(stateName);
@@ -82,13 +82,13 @@ public class ControllerImpl implements Controller {
 //                .filter(e->e.getEnergy()==0)
 //                .count();
         exploredState++;
-        return String.format(STATE_EXPLORER,stateName,retiredExplorers);
+        return String.format(STATE_EXPLORER, stateName, retiredExplorers);
     }
 
     @Override
     public String finalResult() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(FINAL_STATE_EXPLORED,exploredState));
+        sb.append(String.format(FINAL_STATE_EXPLORED, exploredState));
         sb.append(System.lineSeparator());
         sb.append(FINAL_EXPLORER_INFO);
         sb.append(System.lineSeparator());
