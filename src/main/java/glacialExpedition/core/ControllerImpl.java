@@ -15,12 +15,13 @@ import static glacialExpedition.common.ExceptionMessages.*;
 public class ControllerImpl implements Controller {
     private ExplorerRepository explorerRepository;
     private StateRepository stateRepository;
-    private int exploredState;
+    private int retiredExplorers;
+    private  int exploredState;
 
     public ControllerImpl() {
         explorerRepository = new ExplorerRepository();
         stateRepository = new StateRepository();
-        exploredState = 0;
+        retiredExplorers = 0;
     }
 
     @Override
@@ -46,6 +47,7 @@ public class ControllerImpl implements Controller {
     @Override
     public String addState(String stateName, String... exhibits) {
         State state = new StateImpl(stateName);
+        //TODO to check again
         stateRepository.add(state);
         return String.format(STATE_ADDED, stateName);
     }
@@ -57,20 +59,29 @@ public class ControllerImpl implements Controller {
            throw new IllegalArgumentException(String.format(EXPLORER_DOES_NOT_EXIST,explorerName));
        }
         explorerRepository.remove(explorer);
+       retiredExplorers++;
         return String.format(EXPLORER_RETIRED,explorerName);
     }
 
     @Override
     public String exploreState(String stateName) {
         boolean emptyCollection = explorerRepository.getCollection().isEmpty();
+        //TODO to check again
         if(emptyCollection) {
             throw new IllegalArgumentException(STATE_EXPLORERS_DOES_NOT_EXISTS);
         }
-        return null;
+        exploredState++;
+        return String.format(STATE_EXPLORER,stateName,retiredExplorers);
     }
 
     @Override
     public String finalResult() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(FINAL_STATE_EXPLORED,exploredState));
+        sb.append(System.lineSeparator());
+        sb.append(FINAL_EXPLORER_INFO);
+        sb.append(System.lineSeparator());
+        sb.append(explorerRepository.toString());
+        return sb.toString();
     }
 }

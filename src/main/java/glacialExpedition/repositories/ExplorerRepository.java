@@ -4,11 +4,20 @@ import glacialExpedition.models.explorers.Explorer;
 
 import java.util.*;
 
+import static glacialExpedition.common.ConstantMessages.FINAL_EXPLORER_NAME;
+
 public class ExplorerRepository implements Repository<Explorer> {
-    private Map<String,Explorer> explorers;
+    private Map<String, Explorer> explorers;
 
     public ExplorerRepository() {
         explorers = new LinkedHashMap<>();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        explorers.values().forEach(e -> sb.append(e).append(System.lineSeparator()));
+        return sb.toString();
     }
 
     @Override
@@ -18,12 +27,12 @@ public class ExplorerRepository implements Repository<Explorer> {
 
     @Override
     public void add(Explorer entity) {
-        explorers.put(entity.getName(),entity);
+        explorers.put(entity.getName(), entity);
     }
 
     @Override
     public boolean remove(Explorer entity) {
-        return explorers.remove(entity.getName())!= null;
+        return explorers.remove(entity.getName()) != null;
     }
 
     @Override
