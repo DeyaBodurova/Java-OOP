@@ -3,8 +3,6 @@ package glacialExpedition.models.explorers;
 import glacialExpedition.models.suitcases.Carton;
 import glacialExpedition.models.suitcases.Suitcase;
 
-import java.util.Arrays;
-
 import static glacialExpedition.common.ConstantMessages.*;
 import static glacialExpedition.common.ExceptionMessages.EXPLORER_ENERGY_LESS_THAN_ZERO;
 import static glacialExpedition.common.ExceptionMessages.EXPLORER_NAME_NULL_OR_EMPTY;
@@ -20,17 +18,14 @@ public abstract class BaseExplorer implements Explorer {
         suitcase = new Carton();
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public double getEnergy() {
         return energy;
     }
 
-    @Override
     public Suitcase getSuitcase() {
         return suitcase;
     }
@@ -64,20 +59,11 @@ public abstract class BaseExplorer implements Explorer {
         return sb.toString();
     }
 
-    public void setSuitcase(Suitcase suitcase) {
-        this.suitcase = suitcase;
-    }
-
-    @Override
     public boolean canSearch() {
         return energy > 0;
     }
 
-    @Override
     public void search() {
-        if (energy - 15 < 0) {
-            energy = 0;
-        }
-        energy = energy - 15;
+        energy = Math.max(0,energy-15);
     }
 }
