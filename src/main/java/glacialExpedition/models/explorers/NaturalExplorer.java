@@ -9,6 +9,6 @@ public class NaturalExplorer extends BaseExplorer {
 
     @Override
     public void search() {
-        setEnergy(getEnergy() - 7);
+        setEnergy(Math.max(0, getEnergy()-7));
     }
 }
