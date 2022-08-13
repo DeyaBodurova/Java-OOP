@@ -11,8 +11,6 @@ import glacialExpedition.models.states.StateImpl;
 import glacialExpedition.repositories.ExplorerRepository;
 import glacialExpedition.repositories.StateRepository;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,13 +20,11 @@ import static glacialExpedition.common.ExceptionMessages.*;
 public class ControllerImpl implements Controller {
     private ExplorerRepository explorerRepository;
     private StateRepository stateRepository;
-   // private int retiredExplorers;
     private int exploredState;
 
     public ControllerImpl() {
         explorerRepository = new ExplorerRepository();
         stateRepository = new StateRepository();
-        //retiredExplorers = 0;
         exploredState = 0;
     }
 
