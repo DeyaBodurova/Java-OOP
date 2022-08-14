@@ -11,6 +11,7 @@ import glacialExpedition.models.states.StateImpl;
 import glacialExpedition.repositories.ExplorerRepository;
 import glacialExpedition.repositories.StateRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,7 +52,7 @@ public class ControllerImpl implements Controller {
     @Override
     public String addState(String stateName, String... exhibits) {
         State state = new StateImpl(stateName);
-        //Collections.addAll(state.getExhibits(),exhibits);
+        Collections.addAll(state.getExhibits(),exhibits);
         stateRepository.add(state);
         return String.format(STATE_ADDED, stateName);
     }
@@ -63,13 +64,11 @@ public class ControllerImpl implements Controller {
             throw new IllegalArgumentException(String.format(EXPLORER_DOES_NOT_EXIST, explorerName));
         }
         explorerRepository.remove(explorer);
-        //retiredExplorers++;
         return String.format(EXPLORER_RETIRED, explorerName);
     }
 
     @Override
     public String exploreState(String stateName) {
-        //boolean explorersLeft = explorerRepository.getCollection().isEmpty();
         List<Explorer> validExplorers = explorerRepository
                 .getCollection()
                 .stream()

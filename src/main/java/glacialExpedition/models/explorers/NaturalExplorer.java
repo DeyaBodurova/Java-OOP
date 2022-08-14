@@ -2,6 +2,7 @@ package glacialExpedition.models.explorers;
 
 public class NaturalExplorer extends BaseExplorer {
     private static final double ENERGY = 60;
+    private static final double SEARCH_ENTITY = 7;
 
     public NaturalExplorer(String name) {
         super(name, ENERGY);
@@ -9,6 +10,6 @@ public class NaturalExplorer extends BaseExplorer {
 
     @Override
     public void search() {
-        setEnergy(Math.max(0, getEnergy()-7));
+        setEnergy(Math.max(0, getEnergy()-SEARCH_ENTITY));
     }
 }

@@ -8,6 +8,8 @@ import static glacialExpedition.common.ExceptionMessages.EXPLORER_ENERGY_LESS_TH
 import static glacialExpedition.common.ExceptionMessages.EXPLORER_NAME_NULL_OR_EMPTY;
 
 public abstract class BaseExplorer implements Explorer {
+    private static final double SEARCH_ENTITY = 15;
+
     private String name;
     private double energy;
     private Suitcase suitcase;
@@ -64,6 +66,6 @@ public abstract class BaseExplorer implements Explorer {
     }
 
     public void search() {
-        energy = Math.max(0,energy-15);
+        energy = Math.max(0, energy - SEARCH_ENTITY);
     }
 }
